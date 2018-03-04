@@ -82,7 +82,18 @@
     * file
 
 #### 1.2.4 composer 命令行简介 ………………………………………………………………… 7
-
+* composer 工具常用命令功能:
+    * composer list
+    * composer init
+    * composer install
+    * composer update
+    * composer require
+    * composer search
+    * composer show
+    * composer validate         检测 composer.json 文件是否有效
+    * composer self-update
+    * composer create-project   基于 composer 创建一个新的项目
+    * composer dump-autoload    在添加新的类和目录映射时更新 autoloader
 
 ### 1.3 手动构建Laravel 框架……………………………………………………………… 8
 #### 1.3.1 项目初始化 …………………………………………………………………………… 8

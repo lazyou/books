@@ -45,7 +45,7 @@ class ComposerAutoloaderInit0cea931407ca8e93e1bd7d09e15013d7
             }
         }
 
-        $loader->register(true);
+        $loader->register(true); // 注册类自动加载函数
 
         if ($useStaticLoader) {
             $includeFiles = Composer\Autoload\ComposerStaticInit0cea931407ca8e93e1bd7d09e15013d7::$files;

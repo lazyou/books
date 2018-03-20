@@ -121,8 +121,51 @@
 
 
 ### 3.4 反射… …………………………………………………………………………… 55
+* PHP5 具有完整的反射 API, 添加了对 类 接口 函数 方法 和扩展进行反向工作的能力
+
+* 此外反射还提供了获取函数 类 和方法等语言结构中的文档和注释方法
+
+* `ReflectionClass()`
+    * http://php.net/manual/zh/class.reflectionclass.php
+
+* laravel 中服务容器解析服务的过程中就用到了反射机制
+    * `Illuminate\Container\Container.php`
+
+* laravel 解析服务通过 `build()` 函数实现, 一般分为两种情况:
+    * 第一种是查找对应服务是否被服务提供者注册为实例或提供服务的匿名函数, 是就直接解析服务;
+    * 第二种是服务名称没有对应的服务绑定, 通过反射机制来动态创建服务:
+        * 第一步通过放射机制获取服务类构造函数信息;
+        * 第二步是解决服务类构造函数的依赖问题.
+
 ### 3.5 后期静态绑定… ………………………………………………………………… 58
+* 后期静态绑定: 
+    * 用于在继承范围内引用静态调用的类, 即在类的继承过程中, 使用的类不再是当前类, 而是调用类
+    
+* 后期静态绑定使用关键字 static 来实现, 通过这种机制, `static::` 不再被解析为定义当前方法所在的类, 而是在实际运行时计算得到的, 即为运行时最初调用的类
+
+* 在 laravel 中的应用 `Illuminate\Database\Eloquent\Model.php`
+    * eg: `static::create($attributes)`
+
+
 ### 3.6 Laravel 中使用的其他新特性…………………………………………………… 60
 #### 3.6.1 trait ………………………………………………………………………………… 60
+* trait 实现代码复用, 增加了水平特性的组合
+
+* trait 和 类相似, 但是不能像类那样进行实例化, 而是通过关键字 use 添加到其他类的内部
+
+* trait 的重要特性:
+    * 优先级: 当前类的方法会覆盖 trait 中的方法, 而 trait 中的方法会覆盖基类的方法';
+    * 多个 trait 组合: 通过逗号分隔;
+    * 冲突的解决: 两个 trait 在同一个类中命名冲突 (同名方法), 使用 `insteadof` 操作符来明确使用冲突中的哪一个方法. 也可以通过 `as` 操作副将其中一个冲突方法以另一个名称的引入;
+    * 修改方法的访问控制: 使用 as 语法;
+    * trait 的抽象方法: trait 中可以使用抽象成员, 类当中必须实现这个抽象方法;
+    * trait 的静态成员: trait 中可以使用静态方法和静态变量;
+    * trait 的属性定义: trait 中通用可以定义属性.
+
+* laravel 中的应用:
+    * `app\Http\Controllers\Auth\AuthController.php`
+    * `Illuminate\Foundation\Auth\AuthenticateAndRegistersUsers.php`
 
 #### 3.6.2 简化的三元运算符 ………………………………………………………………… 63
+* `$value = $expre1 ?: $expr3`
+    * $value 为true 时值为 $expr1, 否则为 $value 值为 $expr3

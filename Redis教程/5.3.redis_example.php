@@ -1,4 +1,7 @@
 <?php
+/**
+ * 手册: https://github.com/phpredis/phpredis
+ */
 
 // 连接本地的 Redis 服务
 $redis = new Redis();

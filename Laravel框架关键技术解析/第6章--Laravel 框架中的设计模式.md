@@ -25,7 +25,7 @@
 * 在一个组件内使用 `new` 关键字解决了 依赖问题, 却带来了高耦合问题, 所以:
     * 所以就要把 `new` 操作放在组件外部, 组件接收一个 __接口__, 依赖的 类 都实现这个 接口, 从而利用 _鸭子类型_ 的原理使组件接收的 类 更加灵活.
 
-* eg: 详见 6.1.1.duck_typing
+* eg: 详见 6.1.1.duck_type
 
 
 #### 6.1.2 工厂模式 …………………………………………………………………………… 94
@@ -43,54 +43,7 @@
 
 * 控制反转是将组件间的依赖关系从程序内部提取到外部容器来管理, 而依赖注入是指组件的依赖通过外部参数活其他形式注释, 两种说法本质上是一个意思.
 
-* eg: 一个简单的依赖注入实例
-```php
-<?php
-
-// 接口
-interface Visit
-{
-    public function go();
-}
-
-// 接口的实现类 1
-class Leg implements Visit
-{
-    public function go()
-    {
-        echo "go by Leg \n";
-    }
-}
-
-// 接口的实现类 2
-class Car implements Visit
-{
-    public function go()
-    {
-        echo "go by Car \n";
-    }
-}
-
-class Traveller
-{
-    protected $trafficTool;
-
-    public function __construct(Visit $trafficTool)
-    {
-        $this->trafficTool = $trafficTool;
-    }
-
-    public function visitTibet()
-    {
-        $this->trafficTool->go();
-    }
-}
-
-$trafficTool = new Leg();
-// 依赖注入的方式解决依赖问题
-$tra = new Traveller($trafficTool);
-$tra->visitTibet();
-```
+* eg: 详见 6.1.1.duck_type (一个简单的依赖注入实例)
 
 * 上述实例就是一个依赖注入的过程, Traveller 类的构造函数依赖一个外部具有的 Visit 接口的实例.
     * 依赖注入需要通过 __接口__ 来限制, 而不能随意开发, 这也体现了设计模式的另一个原则 -- 针对 __接口__ 编程, 而不是针对实现编程.

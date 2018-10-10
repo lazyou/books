@@ -25,79 +25,14 @@
 * 在一个组件内使用 `new` 关键字解决了 依赖问题, 却带来了高耦合问题, 所以:
     * 所以就要把 `new` 操作放在组件外部, 组件接收一个 __接口__, 依赖的 类 都实现这个 接口, 从而利用 _鸭子类型_ 的原理使组件接收的 类 更加灵活.
 
-* eg: 详见 6.1.1.ioc
+* eg: 详见 6.1.1.duck_typing
 
 
 #### 6.1.2 工厂模式 …………………………………………………………………………… 94
 * 从上面而知, 交通工具实例化过程是经常需要改变的, 所以将此提取到外部来管理.
     * 使用工厂模式实现, 当然也可以利用工厂方法模式
 
-* eg:
-```php
-<?php
-
-// 接口
-interface Visit
-{
-    public function go();
-}
-
-// 接口的实现类 1
-class Leg implements Visit
-{
-    public function go()
-    {
-        echo "go by Leg \n";
-    }
-}
-
-// 接口的实现类 2
-class Car implements Visit
-{
-    public function go()
-    {
-        echo "go by Car \n";
-    }
-}
-
-class TrafficToolFactory
-{
-    public function createTrafficTool($name)
-    {
-        switch ($name) {
-            case 'Leg':
-                return new Leg();
-                break;
-            case 'Car':
-                return new Car();
-                break;
-            default:
-                exit('set trafficTool error!!!');
-                break;
-        }
-    }
-}
-
-class Traveller
-{
-    protected $trafficTool;
-
-    public function __construct($trafficTool)
-    {
-        // 通过工厂生产依赖的交通工具实例
-        $factory = new TrafficToolFactory();
-        $this->trafficTool = $factory->createTrafficTool($trafficTool);
-    }
-
-    public function visitTibet()
-    {
-        $this->trafficTool->go();
-    }
-}
-
-$tra = new Traveller('Car');
-$tra->visitTibet();
-```
+* eg: 详见 6.1.2.factory
 
 * "旅行者" 和 "交通工具" 之间的依赖关系没有了, 但变成了 "旅行者" 和 "交通工具工厂" 之间的依赖.
     * 当需求增加, 需要修改简单工厂模式, 随着依赖增多, 工厂将变得庞大不容易维护.

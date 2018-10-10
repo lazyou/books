@@ -9,7 +9,7 @@ function autoload($class)
     require $class;
 }
 
-// 1: 外部组件 一
+// 1: 外部组件 一 【耦合】
 function componentOne() {
     $visit = new Leg();
     $visit->go(); // 虽然解决了依赖问题, 却带来了耦合: 组件内已经限定了使用 Leg 类
@@ -17,7 +17,7 @@ function componentOne() {
 
 componentOne(); // 调用 
 
-// 2: 外部组件 二 -- IoC 接收一个 interface 类型作为参数
+// 2: 外部组件 二 -- 【解藕】 IoC 接收一个 interface 类型作为参数
 function componentTow(Visit $visit) {
     $visit->go();
 }

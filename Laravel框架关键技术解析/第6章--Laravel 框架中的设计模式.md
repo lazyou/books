@@ -25,54 +25,7 @@
 * 在一个组件内使用 `new` 关键字解决了 依赖问题, 却带来了高耦合问题, 所以:
     * 所以就要把 `new` 操作放在组件外部, 组件接收一个 __接口__, 依赖的 类 都实现这个 接口, 从而利用 _鸭子类型_ 的原理使组件接收的 类 更加灵活.
 
-* eg:
-```php
-<?php
-// 接口
-interface Visit 
-{
-    public function go();   
-}
-
-// 接口的实现类 1
-class Leg implements Visit
-{
-    public function go()
-    {
-        echo "go by Leg \n";
-    }
-}
-
-// 接口的实现类 2
-class Car implements Visit
-{
-    public function go()
-    {
-        echo "go by Car \n";
-    }
-}
-
-// 外部组件 一
-function componentOne() {
-    $visit = new Leg();
-    $visit->go(); // 虽然解决了依赖问题, 却带来了耦合: 组件内已经限定了使用 Leg 类
-}
-
-componentOne(); // 调用 
-
-// 外部组件 二 -- IoC 接收一个 interface 类型作为参数
-function componentTow(Visit $visit) {
-    $visit->go();
-}
-
-// 组件外部决定组件内使用的 类
-// 在系统运行期间, 讲这种依赖关系通过动态注入的方式实现, 这就是 IOC 模式的设计思想
-$leg = new Leg();
-componentTow($leg); 
-
-$car = new Car();
-componentTow($car);
-```  
+* eg: 详见 6.1.1.ioc
 
 
 #### 6.1.2 工厂模式 …………………………………………………………………………… 94

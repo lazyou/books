@@ -7,6 +7,8 @@ class Container
     // 从而实现单例高等功能
     protected $bindings = [];
 
+    // @abstract 绑定的别名
+    // @concrete 实际绑定的类名
     // 绑定接口和生成相应实例的回调函数
     public function bind($abstract, $concrete = null, $shared = false)
     {
@@ -16,6 +18,12 @@ class Container
         }
 
         $this->bindings[$abstract] = compact('concrete', 'shared');
+    }
+
+    // 打印 bindings
+    public function printBindings()
+    {
+        print_r($this->bindings);
     }
 
     // 默认生成实例的回调函数
@@ -60,25 +68,32 @@ class Container
         return $this->bindings[$abstract]['concrete'];
     }
 
-    // 实例化对象
+    // 实例化对象: 利用 PHP的反射机制
     public function build($concrete)
     {
+        // 匿名类： http://php.net/manual/zh/class.closure.php
         if ($concrete instanceof Closure) {
             return $concrete($this);
         }
 
+        // 类的反射： http://php.net/manual/zh/class.reflectionclass.php
         $reflector = new ReflectionClass($concrete);
+        // 检查类是否可实例化
         if (! $reflector->isInstantiable()) {
             echo $message = "Target [$concrete] is not instantiable.";
         }
 
+        // 获取类的构造函数: 返回值是一个 ReflectionMethod 对象，反射了类的构造函数，或者当类不存在构造函数时返回 NULL。
+        // http://php.net/manual/zh/class.reflectionmethod.php
         $constructor = $reflector->getConstructor();
         if (is_null($constructor)) {
             return new $concrete;
         }
 
+        // 通过 ReflectionParameter 数组返回参数列表
         $dependencies = $constructor->getParameters();
         $instances = $this->getDependencices($dependencies);
+        // 从给出的参数创建一个新的类实例
         return $reflector->newInstanceArgs($instances);
     }
 

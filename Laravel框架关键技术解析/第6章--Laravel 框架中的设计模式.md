@@ -63,7 +63,7 @@
 * eg: 详见 6.2.1.decorator
 
 #### 6.2.2 请求处理管道 ……………………………………………………………………… 106
-
+* eg: 详见 6.2.2.decorator 和 6.2.2.decorator_simple
 
 #### 6.2.3 部分源码 …………………………………………………………………………… 110
-
+* Illuminate\Pipeline\Pipeline.php

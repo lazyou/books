@@ -1,10 +1,18 @@
 ## Code Examples
 * https://github.com/codeguy/modern-php
 
+* https://phptherightway.com/
+
 ## 目录
 ```
 ## 第2章 特性
 * 命名空间
+    * namespace
+    * use ... as ...;
+    * use func ...;
+    * use constant ...;
+    * 自动载入： PSR-4 自动载入标准 (PHP-FIG)
+
 * 使用接口
 * 性状
 * 生成器

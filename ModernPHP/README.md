@@ -21,6 +21,8 @@
     * use XxxTrait;
 
 * 生成器
+    * yield
+
 * 闭包
 * Zend OPCaChe
 * 内置的HTTP服务器

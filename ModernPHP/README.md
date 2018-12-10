@@ -17,6 +17,9 @@
     * interface
 
 * 性状
+    * trait
+    * use XxxTrait;
+
 * 生成器
 * 闭包
 * Zend OPCaChe

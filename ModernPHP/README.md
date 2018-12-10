@@ -6,7 +6,7 @@
 ## 目录
 ```
 ## 第2章 特性
-* 命名空间
+* 命名空间 (php5.3)
     * namespace
     * use ... as ...;
     * use func ...;
@@ -16,11 +16,11 @@
 * 使用接口
     * interface
 
-* 性状
+* 性状 (php5.6)
     * trait
     * use XxxTrait;
 
-* 生成器
+* 生成器 (php5.5)
     * yield
 
 * 闭包

@@ -44,6 +44,7 @@
     Loaded Configuration File	/etc/php/7.0/cli/php.ini
     Scan this dir for additional .ini files	/etc/php/7.0/cli/conf.d
     ```
+    * 是否配置服务器判断: `php_sapi_name() == 'cli-server'`
 
 * 启动这个服务器
 * 配置这个服务器

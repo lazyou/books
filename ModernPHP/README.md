@@ -35,6 +35,7 @@
 
 * 内置的HTTP服务器 (php5.4)
     * `php -S 127.0.0.1:8000` 注意这种方式加载的配置是 cli 的 /etc/php/7.0/cli/php.ini
+    * `php -S 127.0.0.1:8000 -c app/php.ini` 加载指定配置
     ```
     Server API	Built-in HTTP server
     Virtual Directory Support	disabled

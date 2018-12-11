@@ -31,8 +31,18 @@
     * 之所以能调用 $closure 变量，因为这个变量的值是一个闭包，且闭包实现了 `__invoke()` 魔术方法。只要变量名后有 `()`，PHP就会查找并调用 `__invoke()` 方法.
     * 附加状态: `use`关键字， `bindTo()` 方法。
 
-* Zend OPCaChe
-* 内置的HTTP服务器
+* Zend OPCaChe (php5.5 起内置)
+
+* 内置的HTTP服务器 (php5.4)
+    * `php -S 127.0.0.1:8000` 注意这种方式加载的配置是 cli 的 /etc/php/7.0/cli/php.ini
+    ```
+    Server API	Built-in HTTP server
+    Virtual Directory Support	disabled
+    Configuration File (php.ini) Path	/etc/php/7.0/cli
+    Loaded Configuration File	/etc/php/7.0/cli/php.ini
+    Scan this dir for additional .ini files	/etc/php/7.0/cli/conf.d
+    ```
+
 * 启动这个服务器
 * 配置这个服务器
 * 查明使用的是否为内置的服务器

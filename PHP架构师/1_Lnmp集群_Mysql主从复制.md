@@ -39,8 +39,25 @@
 
 
 ## 3.lnmp环境的使用-上传项目到lnmp中运行
+* 删除 mysql 的默认匿名用户 (没有用户名也没有密码的用户)
+    * 更新用户密码可使用 mysql 内置方法`password('xxx')`
 
+* `ps -aux | grep nginx`
 
+* `netstat -anpl | grep 3306` -- 没效果啊
+
+* `ulimit -a` // open files 每个进程最大打开文件数量
+    * `ulimit -SHn 65535` // 修改 open files
+
+* nginx http 配置:
+
+* nginx server 站点配置项:
+    * listen
+    * index
+    * root
+    * location
+    * log_format
+    * access_log
 
 ## 4.session丢失的问题
 

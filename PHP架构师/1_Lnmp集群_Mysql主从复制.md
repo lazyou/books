@@ -59,9 +59,14 @@
     * log_format
     * access_log
 
+
 ## 4.session丢失的问题
+* 集群情况下 session 丢失
+    * 被负载均衡转发到不同的服务器, 所以 session 不好使了
 
-
+* 解决:
+    * 方法一. 程序上解决: session 存储到数据库或redis;
+    * 方法二. 负载均衡使用 ip_hash 策略;
 
 ## 5.mysql主从复制
 
